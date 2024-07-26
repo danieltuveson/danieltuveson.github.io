@@ -20,8 +20,7 @@
 
 title: Dan's Blog
 email: danieltuveson@gmail.com
-description: >- # this means to ignore newlines until "baseurl:"
-Daniel Tuveson's Blog.
+description: Daniel Tuveson's Blog
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://danieltuveson.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
