@@ -1,2 +1,0 @@
-# danieltuveson.github.io
-stuff
