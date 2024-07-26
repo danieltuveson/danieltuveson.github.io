@@ -1,0 +1,8 @@
+---
+layout: post
+title:  "Hello"
+date:   2024-07-25
+categories: salutations
+---
+
+This post is a test to make sure things are working properly. Hello.

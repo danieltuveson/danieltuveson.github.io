@@ -23,8 +23,7 @@ email: danieltuveson@gmail.com
 description: Daniel Tuveson's Blog
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://danieltuveson.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
+github_username: danieltuveson
 
 # Build settings
 theme: minima
