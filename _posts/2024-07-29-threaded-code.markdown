@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Threaded Interpreter"
-date:   2024-07-26 
+title:  "A Simple Threaded Interpreter"
+date:   2024-07-29 
 categories: interpreter compiler bytecode thread vm
 ---
 
