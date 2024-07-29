@@ -152,7 +152,7 @@ int threaded(const int *bytecode)
 {% endhighlight %}
 
 
-With this little helper macros that we've added, this isn't much more difficult to read than the loop version, and it's one less jump. That doesn't seem like a lot, but it adds up, especially if we're iterating through these instructions billions of times. 
+With these little helper macros that we've added, this isn't much more difficult to read than the loop version, and it's one less jump. That doesn't seem like a lot, but it adds up, especially if we're iterating through these instructions billions of times. In the profiling I did on my machine using perf, it using about half as many jump instructions as the loop version and runs 20%-30% faster using clang or gcc.
 
 If you want to run this and time it yourself, the code can be found [here](https://github.com/danieltuveson/bytecode). It includes some example bytecode that iterates from `1` to `INT_MAX`. If you want to hack on it, or just get a better sense of what it's doing, I'd suggest enabling logging and changing `INT_MAX` to a small integer.
 
