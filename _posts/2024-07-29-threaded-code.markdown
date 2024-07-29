@@ -35,8 +35,7 @@ Before we get into writing the threaded VM, let's look at a simple example of a 
 
 We'll define that using an enum as follows:
 
-{% highlight c %}  
-enum Bytecode {
+{% highlight c %}enum Bytecode {
     PUSH = 1,
     ADD = 2,
     SUBTRACT = 3,
@@ -48,8 +47,7 @@ enum Bytecode {
 
 As I described above, most VMs will look like a loop over a big switch statment. Something like the following:
 
-{% highlight c %}  
-// Utility macros for manipulating the stack
+{% highlight c %}// Utility macros for manipulating the stack
 #define pop() stack[--sp]
 #define push(value) stack[sp++] = (value)
 #define next() ip++
@@ -105,8 +103,7 @@ This works pretty well, and is decently fast. But we're wasting a bit of time. I
 
 By default, standards-compliant C does not actually provide a way of using goto-labels as values, so we need a gcc-specific extension in order for this code to work (though clang also supports this extension). The relevant documentation for this feature can be found here: [labels as values](https://gcc.gnu.org/onlinedocs/gcc/Labels-as-Values.html). As of writing this, the documentation for this feature explicitly mentions that this is useful for writing fast interpreters!
 
-{% highlight c %}  
-#define cont() goto *(targets[bytecode[ip]])
+{% highlight c %}#define cont() goto *(targets[bytecode[ip]])
 
 int threaded(const int *bytecode)
 {
