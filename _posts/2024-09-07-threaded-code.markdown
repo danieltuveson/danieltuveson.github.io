@@ -155,7 +155,7 @@ int threaded(const int *bytecode)
 
 In our new [threaded version](https://godbolt.org/z/faYcr5sT5), we can see that at the end of each case it simply loads the value in the array and jumps to it,  mirroring what we see in our C code.
 
-With these little helper macros that we've added, this isn't much more difficult to read than the loop version, and removes all of the extra comparisons done by the switch in the looped version. It doesn't seem to significant, but it adds up, especially if we're iterating through these instructions billions of times. In the profiling I did on my machine using perf, it runs 20%-30% faster using clang or gcc when optimizations are enabled. Interestingly, it runs about as fast in both clang and gcc when no optimizations are enabled (-O0).
+With these little helper macros that we've added, this isn't much more difficult to read than the loop version, and removes all of the extra comparisons done by the switch in the looped version. It doesn't seem too significant, but it adds up, especially if we're iterating through these instructions billions of times. In the profiling I did on my machine using perf, it runs 20%-30% faster using clang or gcc when optimizations are enabled. Interestingly, it runs about as fast in both clang and gcc when no optimizations are enabled (-O0).
 
 If you want to run this and time it yourself, the code can be found [here](https://github.com/danieltuveson/bytecode). It includes some example bytecode that iterates from `1` to `INT_MAX`. If you want to hack on it, or just get a better sense of what it's doing, I'd suggest enabling logging and changing `INT_MAX` to a small integer.
 
