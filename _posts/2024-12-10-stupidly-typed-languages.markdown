@@ -5,7 +5,7 @@ date:   2024-12-10
 categories: programming languages stupid satire
 ---
 
-Earlier this week, I was browsing a programming forum and saw two fellows arguing about the definitions of “strong” and “weak” typing. One of the fellows argued that Python has a “strong” type system, because every object has a type, and that C has a “weak” type system because the programmer can circumvent the type system by casting. The other argued that this definition deviated from the original definition of “strong” typing in that a program with “strong” types will not run unless a program satisfies a set of constraints determined by a typechecker, and that by this definition, C would be “strongly typed” and Python would be “weakly typed”.
+Earlier this week, I was browsing a programming forum and saw two fellows arguing about the definitions of “strong” and “weak” typing. One of the fellows argued that Python has a “strong” type system, because every object has a type, and that C has a “weak” type system because the programmer can circumvent the type system by casting. The other argued that this definition deviated from the original definition of “strong” typing in that a program with “strong” types will not run unless the program satisfies a set of constraints determined by a typechecker, and that by this definition, C would be “strongly typed” and Python would be “weakly typed”.
 
 “Alas,” a third fellow chimed in, “‘strongly typed’ and ‘weakly typed’ are not rigorously defined academic terms,” and then linked to this [wikipedia page](https://en.wikipedia.org/wiki/Strong_and_weak_typing).
 
