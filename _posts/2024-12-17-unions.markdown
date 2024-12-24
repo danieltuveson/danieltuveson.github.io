@@ -1,0 +1,248 @@
+---
+layout: post
+title:  "Unions or Sumthing"
+date:   2024-12-17
+categories: types programming languages
+---
+
+I've been thinking about adding unions (or sum types) to the [del](https://github.com/danieltuveson/del) programming language, the hobby language I've been working on for the last year and a half. I still have a dozen more pressing issues to implement, but I want to use this post to catalog some of my thoughts on adding sum types (or union types) to the language.
+
+I think sum types are a really nice feature. C has had unions for a long time, but doesn't provide any mechanism for safe usage. You can set something to an `int` and then read it as a pointer, the main reason for their existence is really just to circumvent the typechecker. As a result, readinf the contents of a union without proper care might give you weird results or crash your program.
+
+The union's superior cousin, algebraic datatypes (ADTs for short), are a bit nicer. They've been around since at least since the days of [the ML programming language](https://en.wikipedia.org/wiki/ML_(programming_language) and been included in subsequent languages of that style of langauge, such as Haskell and OCaml. More recent languages like TypeScript and Rust have popularized this feature in the world of not-functional programming.
+
+I've been thinking that I should add something similar to this in `del`. I think ADTs are a superior way to represent many kinds of data, and pattern matching can be quite a nice feature. One question I still haven't fully found an answer for is "how much ADT-ness should I add to the language?" Should I have the ability to have `null` values (and `null` unsafety) or should ADTs be baked into the type system deeply enough that these kinds of errors can't exist? Null-safety is nice, but it comes at the cost of either making the user's program more complex or making the type system more complex (or both).
+
+## Quick Overview of Proposed Syntax
+Types are declared with the `type` keyword. Types are just aliases, so if we have `type Thingy = int`, then we can use `Thingy` anywhere that `int` could be used.
+
+We can have a sum type, which means a value with this type could have one of any of the types we specify. At runtime we would need to use pattern matching or some other mechanism to find out the specific type a variable has. We'd declare a type alias for a sum type like this:
+
+```
+type OneOfManyThingies = int | string | SomeClass;
+```
+
+You can think of `|` as meaning "or". 
+
+I'm eventually going to add generics to the language, so something could also be declared like this:
+
+```
+type IntOrArray a = int | Array a;
+```
+
+Where `a` is a type. So if a function took `IntOrSomethingElse string`, that would be equivalent to `int | Array string` (where `Array string` is an `Array` of `string`s).
+
+We also want to have product types. In most languages, product types most closely correspond to tuples (or a rudamentary form of classes or structs, where the fields are unnamed). They contain multiple values. Here are two examples:
+
+```
+type IntStringPair = int & string;
+type Tuple a b = a & b;
+```
+
+You can think of `&` as meaning "and".
+
+We can also mix sum and product types, and this gives us algebraic data types:
+
+```
+type IntOrLabeledInt = int | string & int;
+```
+
+Note that `&` has higher precedence than `|`. So you can read the above as `int | (string & int)`. It's also useful to be able to tag items, in case you want disambiguate types that have the same value, but different meanings. For example, lets say we want a type that represents a value or an error message. We might do something like the following:
+
+```
+type ThingOrErrorMessage a = a | string;
+```
+
+What happens if `a` is a string? Then the type is just `string | string` and we can't distinguish between a "good" string and the error message. In Haskell, it's required that every option in the union have a tag. So it would look like this:
+
+```
+type ThingOrErrorMessage a = Thing a | ErrorMessage string;
+```
+
+You can also add the "tag" without any data, and use it sort of like an enum (in fact Rust actually just calls ADTs enums). 
+
+```
+// Enum-ish thing can be used to declare "optional" type, as a replacement for null
+type Maybe a = Nothing | Just a;
+```
+
+This is cool, but it has some drawbacks. Now we need to require that types start with a tag - otherwise `Just a` could be a generic class called `Just` that takes a type parameter, or it could be a tag `Just` followed by a generic type `a`. Requiring every union member have a tag means that we couldn't have something like this: 
+
+```
+function doStuff(maybeInt : null | int) : int | ErrorMessage {
+    // does stuff
+    ...
+}
+```
+
+I would like it so that a user doesn't have to declare all of the types in advance, so I'm not going to require unions to be tagged. The language aready has classes, so you could just do this:
+
+```
+class ErrorMessage {
+    message : string;
+}
+
+type ThingOrErrorMessage a = a | ErrorMessage;
+
+class Null {
+// Contains no fields
+}
+
+type Nullable a = Null | a
+```
+
+Technically you would run into the same problem if we had `Nullable Null` or `ThingOrErrorMessage ErrorMessage`, but that would be a bad use of these type aliases. But one benefit is that we could reuse `Null` or `ErrorMessage` in other unions.
+
+We can also still describe recursive datastructures fairly easily:
+
+```
+class ListNode a {
+    content : a;
+    next : LinkedList a;
+}
+
+type LinkedList a = Null | ListNode a
+
+class TreeNode a { 
+    value : a;
+    left : Tree a;
+    right : Tree a;
+}
+
+type Tree a = contents : Null | a | TreeNode a;
+```
+
+I honestly don't think this is too bad, so it's what I'm going to stick with. Some might say that having both product types and classes in the same language is redundant. I don't think so. To me, there is no obvious way to have private fields in ADTs, so that's one point in favor of something like classes. Also if we want to reference specific fields in a product type, we would have to pattern match on it or destructure it, both of which can get clunky if the object has a lot of fields. And as a nice bonus, we don't have to explicitly give a name to every single union that we use in our programs.
+
+## Feature 1: Destructuring Assignment
+
+So that's how I see the type system working, more or less. Now I'll get into some of the features for working with ADTs.
+
+One things that makes product types easier to work with is destructuring. This is probably something people are familiar with from modern JavaScript. In order to denote that an object should use destructuring in assignment (since we don't want to make type inference really complicated), I'd want to introduce the `<-` symbol:
+
+```
+function returnTuple() : int & string {
+    return 11 & "This is part of a product type with two fields";
+}
+
+let num2, str2 <- returnTuple();
+let tuple = returnTuple(); // Can also not destructure it, if we don't want to
+
+```
+
+We can also use a type alias:
+
+```
+type Tuple = int & string;
+
+function returnTupleExplicit() : Tuple {
+    return 11 & "This is also part of a product type with two fields";
+}
+
+let num2, str2 <- returnTupleExplicit();
+```
+
+That's all well and good for product types, but for sum types, how would that work? Well, I would want it to give a compile error if we tried to do any of the above, so here's my alternative.
+
+## Feature 2: Destructuring `if`
+
+I want to avoid having to implement flow-sensitive typing, since, from what I understand, that's a feature that's pretty difficult to implement properly. The major languages to implement flow-sensitive typing are usually created by very smart people at big corporations, and I am a not-very smart guy making a language in his spare time.
+
+As such, I think it might be cool to allow destructing assignment of union types in `if` statements. I'm thinking that the first statement of an `if` could be an assignment, but if the value of the destructure doesn't match, the `if` statement evaluates to false. This would be less complicated than forcing the user to do pattern matching every time they need to look inside of a union, but would still be safe. Here's an example of what I mean:
+
+```
+function defaultToZero(maybeInt : Nullable int) : int {
+    if let i : int <- maybeInt; i == 5 {
+        println(i, " is 5, btw");
+        return i;
+    else if let i : int <- maybeInt {
+        println(i, " isn't 5, but it is an integer")
+        return i;
+    }
+    return 0;
+}
+```
+
+Or maybe we could rewrite it to take advantage of the basic type inference that `del` already has:
+
+```
+function defaultToZero(maybeInt : Nullable int) : int {
+    let i = 0;
+    if i <- maybeInt; i == 5 {
+        println(i, " is 5, btw");
+    else if i <- maybeInt {
+        println(i, " isn't 5, but it is an integer")
+    }
+    return i;
+}
+```
+
+This syntax isn't too far off from what `c`-like languages do in a numeric `for` loop, and is similar to `go`'s ability to add assignment as the first item of an `if` statement. Technically the semantics are a little different, since match failure is also sort of part of the conditional, but I think it will feel familiar to most programmers.
+
+The main drawback that I can immediately see is that it could make early returns more difficult. In the example above, it might be nicer to check for null, and if the value is non-null, *in an ideal language* it would be safe to start treating `mabyeInt` as an `int` in subsequent code. But now you're in the world of flow-sensitive typing, which I don't want to be in, as an implementer (as I mentioned, I'm a dumb guy with limited time). I'm not sure if there's a good solution to this, but I think destructuring `if` is an ergonomic-enough contruct for most cases.
+
+## Feature 3: Pattern matching
+Pattern matching is great for when there are multiple cases or conditions related to the types. It's basically like the destructuring `if` above, but easier to read when the type could contain many different values. Here's an example of what I would want:
+
+```
+type ManySuchCases = int | string | SomeCustomType | int & SomeCustomType
+
+function printManySuchCases(misc : ManySuchCases) {
+    switch misc {
+        case i : int; i == 5 {
+            println("five, btw");
+        }
+        case i : int {
+            println("not five, but a number");
+        }
+        case str : string {
+            println("'", str, "'");
+        }
+        case sct : SomeCustomType {
+            println("Some fancy type");
+        }
+        case i : int, sct : SomeCustomType {
+            println("an int, but also some fancy type");
+        }
+    }
+}
+```
+
+## Feature 4: Overloading Destructure
+This is a funky one. I want to allow users to be able to overload different aspects of classes. Getters and setters are the obvious ones, as are arithmatic operators. But I think it would also be cool to allow overloading of destructuring. That way classes could be destructured or pattern matched on just like regular ADTs:
+
+```
+class Slice a {
+    array : Array a;
+    startIndex : int;
+    endIndex : int;
+    destructure() : Null | a | a & Slice a {
+        let diff = endIndex - startIndex;
+        if diff <= 0 {
+            return null;
+        } else if diff == 1 {
+            return array[startIndex];
+        } else {
+            return array[startIndex] & new Slice(a, startIndex - 1, endIndex);
+        }
+    }
+}
+
+function recursiveSum(slice : Slice int) : int {
+    switch slice {
+        case _ : Null {
+            return 0;
+        }
+        case val : int {
+            return val;
+        }
+        case val : int, tail : Slice int {
+            return val + sum(tail);
+        }
+    }
+}
+
+```
+
+I'm not sure if any other language has something like this, but it seems cool to me! Hopefully I'm not missing some corner case about this feature being impossible to implement, because I really like it.
+
