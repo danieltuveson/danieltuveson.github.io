@@ -17,12 +17,13 @@ As such, I propose a piece of new unambiguous terminology that can be used to de
 
 ```
 function main() {
+    x = 1
     print("Hello from a stupid programming language!")
-    im_stupid()
+    x.im_stupid()
 }
 ```
 
 A language implementation must be considered “stupidly typed” if its closest equivalent to the above pseudocode would print “Hello from a stupid programming language!” before printing out any other text. If a language satisfies this property, it is a stupid language, and if you use it you are probably an idiot. If it does not, then you are programming in a language for nerds, and you are probably a loser that doesn’t have any friends.
 
-Now I know what you’re thinking. What if a language has a builtin `im_stupid()` function? I’m sorry, but by the canonical definition, it is a stupidly typed programming language. And even worse, you’re a nerd for being so pedantic.
+Now I know what you’re thinking. What if a language has a builtin `im_stupid()` method on integers? I’m sorry, but by the canonical definition, it is a stupidly typed programming language. And even worse, you’re a nerd for being so pedantic.
 
