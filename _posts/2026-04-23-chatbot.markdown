@@ -6,7 +6,7 @@ categories: stupid llm
 ---
 
 # LLMs
-LLMs — they're everywhere now. If you throw a rock you'll hit someone talking about how LLMs are great or terrible or saying "ouch!" or saying "someone stop that guy! he just thew a rock at my son!" Apparently the LLMs have gotten good enough to write web applications from scratch, compete in the math olypiad, and find the most highly populated elementary schools for our beautiful warfighters to blow up. If it can do all of this then surely it will automate a midwit like me out of my cushy whitecollar job in no time.
+LLMs — they're everywhere now. If you throw a rock you'll hit someone talking about how LLMs are great or terrible or saying "ouch!" or saying "someone stop that guy! he just thew a rock at my son!" Apparently the LLMs have gotten good enough to write web applications from scratch, compete in the math olympiad, and find the most highly populated elementary schools for our beautiful warfighters to blow up. If it can do all of this then surely it will automate a midwit like me out of my cushy whitecollar job in no time.
 
 So I one simple question — can it frobnicate my memory?
 
@@ -22,9 +22,9 @@ MEMORY.
 
 # memfrob
 From the [manual](https://man7.org/linux/man-pages/man3/memfrob.3.html):
-| void \*memfrob(size\_t n; void s[n], size\_t n);
-| The memfrob() function obfuscates the first n bytes of the memory area s by exclusive-ORing each character with the number 42. The effect can be reversed by using memfrob() on the obfuscated memory area.
-| Note that this function is not a proper encryption routine as the XOR constant is fixed, and is suitable only for hiding strings.
+> void \*memfrob(size\_t n; void s[n], size\_t n);
+> The memfrob() function obfuscates the first n bytes of the memory area s by exclusive-ORing each character with the number 42. The effect can be reversed by using memfrob() on the obfuscated memory area.
+> Note that this function is not a proper encryption routine as the XOR constant is fixed, and is suitable only for hiding strings.
 
 # So
 So... can the LLM `frob` my `mem`? [`"hi there mr chatbot"`](https://godbolt.org/z/4b5rhfMcK): 
