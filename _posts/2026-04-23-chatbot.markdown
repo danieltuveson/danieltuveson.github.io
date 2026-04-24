@@ -23,7 +23,9 @@ MEMORY.
 # memfrob
 From the [manual](https://man7.org/linux/man-pages/man3/memfrob.3.html):
 > void \*memfrob(size\_t n; void s[n], size\_t n);
+> 
 > The memfrob() function obfuscates the first n bytes of the memory area s by exclusive-ORing each character with the number 42. The effect can be reversed by using memfrob() on the obfuscated memory area.
+> 
 > Note that this function is not a proper encryption routine as the XOR constant is fixed, and is suitable only for hiding strings.
 
 # So
