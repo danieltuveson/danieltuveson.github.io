@@ -53,7 +53,7 @@ Mr Gemini kinda shit himself here. He told me what it means to frobnicate, but t
 I will say that I asked Mr ChatGPT to frob my mem earlier today, and he was able to do it without issue. But when I came back to try again for this post, he got somewhat confused. \x0A is an escape code for newline, but then he switched to \n. And he added in a random space between B and C. Still one of the better showings here.
 
 # DeepSeek
-[It seems that Mr DeepSeek cannot frob my mem](https://chat.deepseek.com/share/o7a71v9hi0hdjwoyan) [but Dr DeepSeek almost got it after lecturing me](https://chat.deepseek.com/share/cmu2rf5scucgqih33f)
+[It seems that Mr DeepSeek cannot frob my mem,](https://chat.deepseek.com/share/o7a71v9hi0hdjwoyan) [but Dr DeepSeek almost got it after lecturing me.](https://chat.deepseek.com/share/cmu2rf5scucgqih33f)
 
 The "instant" version of DeepSeek got most of it right when it went letter-by-letter, and then gave a result that was also almost what it gave from the letter-by-letter example.
 
@@ -62,11 +62,13 @@ The "expert" version decided to not actually give me an answer, and similar to M
 The only reason I tried the fancier version of DeepSeek's model but not the other companies' models is that DeepSeek didn't make me swipe a credit card and put it right next to the "instant" one. I don't care enough about this stuff to pay for any of these models, and I don't have the patience to figure out how to get the "best" model that doesn't involve the company nickel-and-diming me.
 
 # Copilot
-[It seems that Mr Copilot cannot frob my mem](https://copilot.microsoft.com/shares/zv88e4xk65Jd1EZ6S8igi)
+[It seems that Mr Copilot cannot frob my mem.](https://copilot.microsoft.com/shares/zv88e4xk65Jd1EZ6S8igi)
+
 Similar to Dr DeepSeek, Mr Copilot gave me a lecture instead of an answer, with the option to give me an answer if I consented. I did consent, but unlike Dr DeepSeek, it gave me a garbage answer. Similar to Mr Gemini, it tried to show it's work for a couple of steps and gave up. This is the second worst showing after Gemini.
 
 # Qwen
-[It seems that Mr Qwen can frob my mem](https://chat.qwen.ai/s/5951837a-ff96-4788-acc0-5a7d2bef35fb)
+[It seems that Mr Qwen can frob my mem.](https://chat.qwen.ai/s/5951837a-ff96-4788-acc0-5a7d2bef35fb)
+
 Finally. Someone can frob my mem, with no mistakes, and without some long-winded lecture.
 
 # Conculsion
