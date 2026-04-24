@@ -8,7 +8,7 @@ categories: stupid llm
 # LLMs
 LLMs — they're everywhere now. If you throw a rock you'll hit someone talking about how LLMs are great or terrible or saying "ouch!" or saying "someone stop that guy! he just thew a rock at my son!" Apparently the LLMs have gotten good enough to write web applications from scratch, compete in the math olympiad, and find the most highly populated elementary schools for our beautiful warfighters to blow up. If it can do all of this then surely it will automate a midwit like me out of my cushy whitecollar job in no time.
 
-So I one simple question — can it frobnicate my memory?
+So I ask one simple question — can it frobnicate my memory?
 
 # What?
 You heard me - can it frobnicate my memory? Can it do that? If I ask it nicely - will it FROB my MEM?
