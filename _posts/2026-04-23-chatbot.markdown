@@ -40,7 +40,7 @@ IBK^HE^
 # Claude
 [It seems that Mr Claude cannot frob my mem.](https://claude.ai/share/0e564ded-8a1a-4b04-b8db-0055b36d1aff)
 
-He did provide many details of what it means to frob mem, including a nicely formatted table that was only wrong for a few characters, and then provided an answer that was also wrong and didn't match the table he produced. 
+He did provide many details of what it means to frob mem, including a nicely formatted table that was only wrong for a few characters, and then provided an answer that was also wrong. 
 
 # Gemini
 [It seems that Mr Gemini cannot frob my mem.](https://gemini.google.com/share/4768e326b500)
@@ -50,7 +50,7 @@ Mr Gemini kinda shit himself here. He told me what it means to frobnicate, but t
 # ChatGPT
 [It seems that Mr ChatGPT can almost frob my mem.](https://chatgpt.com/share/69eaa209-3c9c-83e8-8344-229eb697562d)
 
-I will say that I asked Mr ChatGPT to frob my mem earlier today, and he was able to do it without issue. But when I came back to try again for this post, he got somewhat confused. \x0A is an escape code for newline, but then he switched to \n. And he added in a random space between B and C. Still one of the better showings here.
+I will say that I asked Mr ChatGPT to frob my mem earlier today, and he was able to do it without issue. But when I came back to try again for this post, he got somewhat confused. \x0A is a hex escape code for newline, but then he switched to the more common \n. Not wrong, but a little weird. But he added in a random space between B and C, which is wrong. Still one of the better showings here.
 
 # DeepSeek
 [It seems that Mr DeepSeek cannot frob my mem,](https://chat.deepseek.com/share/o7a71v9hi0hdjwoyan) [but Dr DeepSeek almost got it after lecturing me.](https://chat.deepseek.com/share/cmu2rf5scucgqih33f)
@@ -64,7 +64,7 @@ The only reason I tried the fancier version of DeepSeek's model but not the othe
 # Copilot
 [It seems that Mr Copilot cannot frob my mem.](https://copilot.microsoft.com/shares/zv88e4xk65Jd1EZ6S8igi)
 
-Similar to Dr DeepSeek, Mr Copilot gave me a lecture instead of an answer, with the option to give me an answer if I consented. I did consent, but unlike Dr DeepSeek, it gave me a garbage answer. Similar to Mr Gemini, it tried to show it's work for a couple of steps and gave up. This is the second worst showing after Gemini.
+Similar to Dr DeepSeek, Mr Copilot gave me a lecture instead of an answer, with the option to give me an answer if I consented. I did consent, but unlike Dr DeepSeek, it gave me a garbage answer. Similar to Mr Gemini, it tried to show its work for a couple of steps and gave up. This is the second worst showing after Gemini.
 
 # Qwen
 [It seems that Mr Qwen can frob my mem.](https://chat.qwen.ai/s/5951837a-ff96-4788-acc0-5a7d2bef35fb)
