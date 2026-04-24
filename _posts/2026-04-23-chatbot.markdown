@@ -1,0 +1,74 @@
+---
+layout: post
+title:  "Riddle Me This, Mr. Chatbot"
+date:   2026-04-24
+categories: stupid llm
+---
+
+# LLMs
+LLMs — they're everywhere now. If you throw a rock you'll hit someone talking about how LLMs are great or terrible or saying "ouch!" or saying "someone stop that guy! he just thew a rock at my son!" Apparently the LLMs have gotten good enough to write web applications from scratch, compete in the math olypiad, and find the most highly populated elementary schools for our beautiful warfighters to blow up. If it can do all of this then surely it will automate a midwit like me out of my cushy whitecollar job in no time.
+
+So I one simple question — can it frobnicate my memory?
+
+# What?
+You heard me - can it frobnicate my memory? Can it do that? If I ask it nicely - will it FROB my MEM?
+
+CAN.
+IT.
+FROBNICATE.
+MY.
+FUCKING.
+MEMORY.
+
+# memfrob
+From the [manual](https://man7.org/linux/man-pages/man3/memfrob.3.html):
+| void \*memfrob(size\_t n; void s[n], size\_t n);
+| The memfrob() function obfuscates the first n bytes of the memory area s by exclusive-ORing each character with the number 42. The effect can be reversed by using memfrob() on the obfuscated memory area.
+| Note that this function is not a proper encryption routine as the XOR constant is fixed, and is suitable only for hiding strings.
+
+# So
+So... can the LLM `frob` my `mem`? [`"hi there mr chatbot"`](https://godbolt.org/z/4b5rhfMcK): 
+```
+BC
+^BOXO
+GX
+IBK^HE^
+```
+
+# Claude
+[It seems that Mr Claude cannot frob my mem.](https://claude.ai/share/0e564ded-8a1a-4b04-b8db-0055b36d1aff)
+
+He did provide many details of what it means to frob mem, including a nicely formatted table that was only wrong for a few characters, and then provided an answer that was also wrong and didn't match the table he produced. 
+
+# Gemini
+[It seems that Mr Gemini cannot frob my mem.](https://gemini.google.com/share/4768e326b500)
+
+Mr Gemini kinda shit himself here. He told me what it means to frobnicate, but then said the characters I gave him are non-printable when frobnicated (not true, see the blob of frob above) and printed a string of completely incorrect garbage. Similar to Mr Claude, he gave me a table, but gave up after 4 characters. I really don't know what he was smoking when he wrote this. This was by far the worst attempt.
+
+# ChatGPT
+[It seems that Mr ChatGPT can almost frob my mem.](https://chatgpt.com/share/69eaa209-3c9c-83e8-8344-229eb697562d)
+
+I will say that I asked Mr ChatGPT to frob my mem earlier today, and he was able to do it without issue. But when I came back to try again for this post, he got somewhat confused. \x0A is an escape code for newline, but then he switched to \n. And he added in a random space between B and C. Still one of the better showings here.
+
+# DeepSeek
+[It seems that Mr DeepSeek cannot frob my mem](https://chat.deepseek.com/share/o7a71v9hi0hdjwoyan) [but Dr DeepSeek almost got it after lecturing me](https://chat.deepseek.com/share/cmu2rf5scucgqih33f)
+
+The "instant" version of DeepSeek got most of it right when it went letter-by-letter, and then gave a result that was also almost what it gave from the letter-by-letter example.
+
+The "expert" version decided to not actually give me an answer, and similar to Mr Gemini, incorrectly stated that the characters would be non-printable. But then she asked me if I wanted her to actually give me an answer. After saying "yes" she went letter-by-letter giving the correct answer, and then threw in a random extra newline in the final summary. So close!
+
+The only reason I tried the fancier version of DeepSeek's model but not the other companies' models is that DeepSeek didn't make me swipe a credit card and put it right next to the "instant" one. I don't care enough about this stuff to pay for any of these models, and I don't have the patience to figure out how to get the "best" model that doesn't involve the company nickel-and-diming me.
+
+# Copilot
+[It seems that Mr Copilot cannot frob my mem](https://copilot.microsoft.com/shares/zv88e4xk65Jd1EZ6S8igi)
+Similar to Dr DeepSeek, Mr Copilot gave me a lecture instead of an answer, with the option to give me an answer if I consented. I did consent, but unlike Dr DeepSeek, it gave me a garbage answer. Similar to Mr Gemini, it tried to show it's work for a couple of steps and gave up. This is the second worst showing after Gemini.
+
+# Qwen
+[It seems that Mr Qwen can frob my mem](https://chat.qwen.ai/s/5951837a-ff96-4788-acc0-5a7d2bef35fb)
+Finally. Someone can frob my mem, with no mistakes, and without some long-winded lecture.
+
+# Conculsion
+Unfortunately many of the robots do not seem to contain the human emotions necessary to understand frobnication. Perhaps another bajillion dollars worth of training and they will develop souls, and know what it means to be human and to frobnicate one's memories. Or they could just copy whatever it is that Alibaba is doing, since Qwen seemed to figure it out.
+
+If you try to repeat this, you'll probably get totally different results. If you want to reliably frobnicate memory, then write a script to do it. Or if you're a lazy bum, ask the robot to write the script for you. They seem pretty good at that, actually.
+

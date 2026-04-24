@@ -1,0 +1,50 @@
+---
+layout: post
+title:  "Riddle Me This, Mr. Chatbot"
+date:   2026-04-23
+categories: stupid llm
+---
+
+# LLMs
+LLMs — they're everywhere now. If you throw a rock you'll hit someone talking about how LLMs or bad or saying "ouch!" or "someone stop that guy! he just thew a rock at my son!" Apparently the LLMs have gotten good enough to write web applications from scratch, compete in the math olypiad, and choose the most highly populated elementary schools for our beautiful warfighters to blow up. If it can do all of this then surely it will automate a midwit like me out of my cushy whitecollar job in no time.
+
+So I just have one final question — can it frobnicate my memory?
+
+# What?
+You heard me - can it frobnicate my memory? Can it do that? If I ask it nicely - will it frob my mem? CAN. IT. FROB. MY. FUCKING. MEM???!
+
+# memfrob
+From the [manual](https://man7.org/linux/man-pages/man3/memfrob.3.html):
+| void \*memfrob(size\_t n; void s[n], size\_t n);
+| The memfrob() function obfuscates the first n bytes of the memory area s by exclusive-ORing each character with the number 42.  The effect can be reversed by using memfrob() on the obfuscated memory area.
+| Note that this function is not a proper encryption routine as the XOR constant is fixed, and is suitable only for hiding strings.
+
+# So
+So... can the LLM `frob` my `mem`?
+
+`memfrob -e "hi there mr chatbot"`: 
+```
+BC
+^BOXO
+GX
+IBK^HE^
+```
+
+# Claude
+[It seems that Mr Claude cannot frob my mem.](https://claude.ai/share/0e564ded-8a1a-4b04-b8db-0055b36d1aff)
+
+He did provide many details of what it means to frob mem, including a nicely formatted table that was only wrong for a few characters, and then provided an answer that was also wrong and didn't match the table he produced. Unfortunately he does not seem to contain the human emotions to understand frobnication. Perhaps another bajillion dollars worth of training and he will develop a soul, and know what it means to be human and to frobnicate.
+
+# Gemini
+[It seems that Mr Gemini cannot frob my mem.](https://gemini.google.com/share/4768e326b500)
+
+Mr. Gemini kinda shit himself here. He told me what it means to frobnicate, but then said the characters I gave him are non-printable when frobnicated (not true, see the blob of frob above) and printed a string of completely incorrect garbage. Similar to Mr. Claude, it gave me a table, but gave up after 4 characters. I really don't know what he was smoking when he wrote this.
+
+# ChatGPT
+[It seems that Mr ChatGPT cannot frob my mem.](https://chatgpt.com/share/69eaa209-3c9c-83e8-8344-229eb697562d)
+
+I will say that I tried it earlier and Mr ChatGPT was able to frob my mem, but when I came back to try again for this post, he failed. Perhaps if you ask him to frob your mem, you'll have more luck.
+
+# Conculsion
+These are text-prediction machines. If you ask them to produce a weird piece of text that has never been written down on the internet, such as some frobnicated text, they fail.
+
